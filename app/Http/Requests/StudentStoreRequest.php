@@ -22,16 +22,27 @@ class StudentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' =>['required'],
-            'middle_name' =>['required'],
-            'last_name' =>['required'],
-            'contact_person' =>['required'],
-            'image' =>['required'],
-            'dob' =>['required'],
-            'age' =>['required'],
-            'address_one' =>['required'],
-            'city' =>['required'],
-            'district' =>['required'],
+            'guardian' => ['required', 'string'],
+            'first_name' => ['required', 'string'],
+            'middle_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'image' => ['required'],
+            'birthday' => ['required'],
+            'address' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'district' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'guardian' => 'Parent',
         ];
     }
 }

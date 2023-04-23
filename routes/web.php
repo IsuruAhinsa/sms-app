@@ -24,8 +24,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::resource('/guardians', GuardianController::class);
-Route::resource('/students', StudentController::class);
+Route::resource('guardians', GuardianController::class);
+Route::resource('students', StudentController::class);
 
 
 Route::middleware('auth')->group(function () {

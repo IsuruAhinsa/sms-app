@@ -31,16 +31,15 @@ class GuardianController extends Controller
     public function store(GuardianRequest $request)
     {
         Guardian::create([
-            
-            'name'=>$request->input('name'),
-            'email'=>$request->input('email'),
-            'phone'=>$request->input('phone'),
-            'nic'=>$request->input('nic'),
-            'address'=>$request->input('address'),
-            
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'nic' => $request->input('nic'),
+            'address' => $request->input('address'),
+            'contact_person' => $request->input('contact_person'),
         ]);
 
-        return to_route('guardians.index')->with('success', 'Parent Created Successfully');
+        return redirect()->route('guardians.index')->with('success', 'Parent Created Successfully');
     }
 
     /**
@@ -66,18 +65,17 @@ class GuardianController extends Controller
     {
         Guardian::where('id', $guardian->id)->update([
 
-          
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'nic'=> $request->nic,
-            'phone'=> $request->phone,
-            'address'=> $request->address,
-           
+
+            'name' => $request->name,
+            'email' => $request->email,
+            'nic' => $request->nic,
+            'phone' => $request->phone,
+            'address' => $request->address,
+
 
         ]);
 
         return to_route('guardians.index')->with('success', 'Parent Updated Successfully');
-   
     }
 
     /**
@@ -90,6 +88,5 @@ class GuardianController extends Controller
         }
 
         return to_route('guardians.index')->with('success', 'Parent Deleted Successfully');
-    
     }
 }

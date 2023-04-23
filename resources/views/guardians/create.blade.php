@@ -1,88 +1,80 @@
 <x-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
 
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('Create Parents') }}
+                </h2>
 
-  <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="max-w-xl">
+                    <form method="post" action="{{ route('guardians.store') }}" class="mt-6 space-y-6">
+                        @csrf
 
+                        <div>
+                            <label for="contact_person" class="block text-sm font-medium text-gray-700"> Contact
+                                Person</label>
+                            <div class="flex item-inline mt-1">
+                                <div class="flex items-center">
+                                    <input id="mother" name="contact_person" type="radio"
+                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                        value="Mother">
+                                    <label for="mother" class="ml-3 block text-sm font-medium text-gray-700">
+                                        Mother</label>
+                                </div>
+                                <div class="flex items-center ml-4">
+                                    <input id="father" name="contact_person" type="radio"
+                                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                        value="Father">
+                                    <label for="father" class="ml-3 block text-sm font-medium text-gray-700">
+                                        Father</label>
+                                </div>
+                            </div>
+                            <x-input-error class="mt-2" :messages="$errors->get('contact_person')" />
 
-      <div class="sm:flex sm:items-center">
-        <div class="sm:flex-auto">
-          <h1 class="text-xl font-semibold text-gray-900">Create Parents</h1>
-          <!-- <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p> -->
-        </div>
+                        </div>
 
-      </div>
-      <form action="{{route('guardians.store')}}" method="post" class="space-y-8 divide-y divide-gray-200">
-        @csrf
-        <div class="space-y-8 divide-y divide-gray-200">
+                        <div>
+                            <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                                :value="old('name')" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
 
+                        <div>
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
+                                :value="old('email')" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                        </div>
 
-          <div class="pt-8">
+                        <div>
+                            <x-input-label for="phone" :value="__('Contact Number')" />
+                            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full"
+                                :value="old('phone')" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                        </div>
 
-            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div class="sm:col-span-3">
-                <label for="name" class="block text-sm font-medium text-gray-700"> Name </label>
-                <div class="mt-1">
-                  <input type="text" name="name" id="name" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                  @error('name')
-                  <div class="text-sm text-red-400">{{ $message}}</div>
-                  @enderror
+                        <div>
+                            <x-input-label for="nic" :value="__('NIC')" />
+                            <x-text-input id="nic" name="nic" type="text" class="mt-1 block w-full"
+                                :value="old('nic')" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('nic')" />
+                        </div>
 
+                        <div>
+                            <x-input-label for="address" :value="__('Address')" />
+                            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full"
+                                :value="old('address')" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="sm:col-span-3 mt-3">
-                  <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
-                  <div class="mt-1">
-                    <input id="email" name="email" type="email" autocomplete="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                  </div>
-                  @error('email')
-                  <div class="text-sm text-red-400">{{ $message}}</div>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-3 mt-3">
-                  <label for="phone" class="block text-sm font-medium text-gray-700"> Contact Number </label>
-                  <div class="mt-1">
-                    <input type="text" name="phone" id="phone" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                  </div>
-                  @error('phone')
-                  <div class="text-sm text-red-400">{{ $message}}</div>
-                  @enderror
-                </div>
-
-
-                <div class="sm:col-span-3 mt-3">
-                  <label for="nic" class="block text-sm font-medium text-gray-700"> NIC </label>
-                  <div class="mt-1">
-                    <input type="text" name="nic" id="nic" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                  </div>
-                  @error('nic')
-                  <div class="text-sm text-red-400">{{ $message}}</div>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-3 mt-3">
-                  <label for="address" class="block text-sm font-medium text-gray-700"> Address </label>
-                  <div class="mt-1">
-                    <input type="text" name="address" id="address" autocomplete="given-name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                  </div>
-                  @error('address')
-                  <div class="text-sm text-red-400">{{ $message}}</div>
-                  @enderror
-                </div>
-              </div>
-
-
             </div>
-
-
-          </div>
-          <div class="pt-5">
-
-            <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-
-          </div>
-      </form>
+        </div>
     </div>
-  </div>
 </x-app-layout>

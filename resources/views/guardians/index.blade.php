@@ -29,6 +29,7 @@
                                 <table class="min-w-full divide-y divide-gray-300">
                                     <thead class="bg-gray-50">
                                         <tr>
+                                            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Contact Person</th>
                                             <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
                                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email address </th>
                                             <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contact Number </th>
@@ -42,6 +43,7 @@
                                         @foreach($guardians as $guardian)
 
                                         <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $guardian->contact_person}}</td>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ $guardian->name}}</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $guardian->email}}</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $guardian->phone}}</td>

@@ -15,12 +15,13 @@ class Guardian extends Model
         'email',
         'phone',
         'nic',
-        'address'
-    
+        'address',
+        'contact_person'
 
     ];
 
-    public function student(){
+    public function student()
+    {
         return $this->hasOne(Student::class);
     }
 }

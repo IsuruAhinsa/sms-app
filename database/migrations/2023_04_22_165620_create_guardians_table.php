@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('nic')->unique();
             $table->string('address');
+            $table->enum('contact_person', ['Father', 'Mother']);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -22,10 +22,11 @@ class GuardianRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' =>['required'],
-            'email' =>['required','email'],
-            'phone' =>['required','numeric'],
-            'nic' =>['required', 'numeric'],
+            'contact_person' => ['required'],
+            'name' =>['required', 'string'],
+            'email' =>['required','email', 'unique:guardians,email'],
+            'phone' =>['required', 'string', 'unique:guardians,phone','regex:/^[0-9]{10}/'],
+            'nic' =>['required', 'unique:guardians,nic', 'string','regex:/([0-9]{9}[x|X|v|V]|[0-9]{12})/'],
             'address' =>['required'],
         ];
     }

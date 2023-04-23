@@ -92,7 +92,12 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $guardians = Guardian::all();
-        return view('students.edit', compact('student', 'guardians'));
+        $districts = DB::table('districts')->get();
+        return view('students.edit', [
+            'student' => $student,
+            'guardians' => $guardians,
+            'districts' => $districts,
+        ]);
     }
 
     /**

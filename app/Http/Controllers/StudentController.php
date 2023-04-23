@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
+use App\Mail\StudentCreated;
 use App\Models\Guardian;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
@@ -56,7 +58,7 @@ class StudentController extends Controller
             }
         }
 
-        Student::Create([
+        $student = Student::Create([
             'image' => $filename,
             'guardian_id' => $request->input('guardian'),
             'first_name' => $request->input('first_name'),
@@ -68,6 +70,10 @@ class StudentController extends Controller
             'city' => $request->input('city'),
             'district' => $request->input('district'),
         ]);
+
+        if ($student) {
+            Mail::to($student->guardian->email)->send(new StudentCreated($student));
+        }
 
         return redirect()->route('students.index')->with('success', 'Student Created Successfully');
     }
